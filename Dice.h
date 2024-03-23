@@ -4,12 +4,13 @@
 #include <string>
 using namespace std;
 
-class Dice {
+class Dice
+{
 public:
     Dice(const string& color, const int& numFaces);
     string getColor() const;
-    int getFaces() const;
-private:
+    int getNumFaces() const;
+protected:
     string color;
     int numFaces;
 };

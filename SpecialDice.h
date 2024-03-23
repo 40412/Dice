@@ -2,13 +2,15 @@
 #define SPECIALDICE_H
 
 #include "Dice.h"
+#include <vector>
 
-class SpecialDice : public Dice {
+class SpecialDice : public Dice
+{
 public:
-    SpecialDice();
-    // Other member functions go here
+    SpecialDice(const string& color, const int& numFaces);
+    const vector<int>& getFaces() const;
 private:
-         // Member variables go here
+    vector<int> faces;
 };
 
 #endif // SPECIALDICE_H

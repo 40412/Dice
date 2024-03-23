@@ -4,7 +4,8 @@
 #include <string>
 using namespace std;
 
-class Player {
+class Player
+{
 public:
     Player(const string& name);
     string getName() const;

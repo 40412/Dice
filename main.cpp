@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Player.h"
 #include "Dice.h"
-//#include "SpecialDice.h"
+#include "SpecialDice.h"
 
 using namespace std;
 
@@ -12,15 +12,23 @@ int main()
     cout << player1.getName() << endl;
     int numPlayers;
     Dice greenDie("green", 6);
-    cout << "Die: " << greenDie.getColor() << " " << greenDie.getFaces() << endl;
+    cout << "Die: " << greenDie.getColor() << " " << greenDie.getNumFaces() << endl;
 
-    while (true) {
+    SpecialDice twelveSides("red", 12);
+    for(int face : twelveSides.getFaces())
+    {
+        cout << face << " ";
+    }
+
+    while (true)
+    {
         cout << "Enter 'q' to quit game" << endl;
         string input;
         cout << "How many players are playing?";
         cin >> input;
 
-        if (input == "q") {
+        if (input == "q")
+        {
             break;
         }
         numPlayers = stoi(input);
