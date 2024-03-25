@@ -34,6 +34,23 @@ void Game::gameLoop()
 
     while (true)
     {
+        for(int i = 0; i < players.size(); i++)
+        {
+            cout << "Player " << players[i].getName() << " rolls" << endl;
+            int score = players[i].getScore();
+
+            for(int j = 0; j < dice.size(); j++)
+            {
+                dice[i].roll();
+                int roll = dice[i].getFace();
+                cout << "rolled: " << roll << endl;
+
+                cout << score << endl;
+                score += roll;
+                players[i].setScore(score);
+                cout << "Score now: " << score << endl;
+            }
+        }
         cout << "Continue game?" << endl;
         cin >> input;
 
@@ -41,21 +58,29 @@ void Game::gameLoop()
         {
             break;
         }
+    }
+}
 
-        for(int i = 0; i < players.size(); i++)
+vector<Player> Game::winner() const
+{
+    vector<Player> winners;
+    int score;
+    int max_score = 0;
+
+    for (i = 0; i < players.size(); i++)
+    {
+        score = players[i].getScore();
+
+        if (score > max_score)
         {
-            cout << "Player " << players[i].getName() << " rolls" << endl;
-
-            for(int i = 0; i < dice.size(); i++)
-            {
-                dice[i].roll();
-                int roll = dice[i].getFace();
-                cout << "rolled: " << roll << endl;
-                int score = players[i].getScore();
-                score += roll;
-                players[i].setScore(score);
-                cout << "Score now: " << score << endl;
-            }
+            max_score = score;
+            winners.clear();
+            winners.push_back(players[i]);
+        }
+        else if (score == max_score)
+        {
+            winners.push_back(players[i]);
         }
     }
+    return winners;
 }

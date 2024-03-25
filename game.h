@@ -17,6 +17,7 @@ public:
     void addDice(Dice dice);
     void gameLoop();
     void print_players();
+    vector<Player> winner() const;
 private:
     vector<Player> players;
     vector<Dice> dice;
