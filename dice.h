@@ -10,9 +10,12 @@ public:
     Dice(const string& color, const int& numFaces);
     string getColor() const;
     int getNumFaces() const;
+    int getFace() const;
+    void roll();
 protected:
     string color;
     int numFaces;
+    int face;
 };
 
 #endif // DICE_H

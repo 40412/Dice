@@ -1,4 +1,4 @@
-#include "SpecialDice.h"
+#include "special_dice.h"
 #include <string>
 #include <vector>
 using namespace std;
@@ -18,4 +18,11 @@ SpecialDice::SpecialDice(const string& color, const int& numFaces) : Dice(color,
 const vector<int>& SpecialDice::getFaces() const
 {
     return faces;
+}
+
+void SpecialDice::roll()
+{
+    srand(time(NULL));
+    int randN = rand() % numFaces + 1;
+    face = randN;
 }

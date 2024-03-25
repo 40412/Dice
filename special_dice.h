@@ -1,7 +1,7 @@
-#ifndef SPECIALDICE_H
-#define SPECIALDICE_H
+#ifndef SPECIAL_DICE_H
+#define SPECIAL_DICE_H
 
-#include "Dice.h"
+#include "dice.h"
 #include <vector>
 
 class SpecialDice : public Dice
@@ -9,11 +9,12 @@ class SpecialDice : public Dice
 public:
     SpecialDice(const string& color, const int& numFaces);
     const vector<int>& getFaces() const;
+    void roll();
 private:
     vector<int> faces;
 };
 
-#endif // SPECIALDICE_H
+#endif // SPECIAL_DICE_H
 
 
 

@@ -4,12 +4,14 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        Dice.cpp \
-        Player.cpp \
-        SpecialDice.cpp \
-        main.cpp
+        dice.cpp \
+        game.cpp \
+        main.cpp \
+        player.cpp \
+        special_dice.cpp
 
 HEADERS += \
-    Dice.h \
-    Player.h \
-    SpecialDice.h
+    dice.h \
+    game.h \
+    player.h \
+    special_dice.h

@@ -1,38 +1,48 @@
 #include <iostream>
-#include "Player.h"
-#include "Dice.h"
-#include "SpecialDice.h"
+#include "player.h"
+#include "dice.h"
+#include "special_dice.h"
+#include <memory>
+#include "game.h"
 
 using namespace std;
 
 int main()
 {
-    cout << "Hello World!" << endl;
-    Player player1("Jasmin");
-    cout << player1.getName() << endl;
     int numPlayers;
-    Dice greenDie("green", 6);
-    cout << "Die: " << greenDie.getColor() << " " << greenDie.getNumFaces() << endl;
+    unique_ptr<Dice> greenDie = make_unique<Dice>("green", 6);
+    greenDie->roll();
+    cout << "Die: " << greenDie->getColor() << " " << greenDie->getNumFaces() << " " << greenDie->getFace() << endl;
 
     SpecialDice twelveSides("red", 12);
-    for(int face : twelveSides.getFaces())
-    {
-        cout << face << " ";
-    }
+    twelveSides.roll();
+    Dice yellowDie("yellow", 6);
+    cout << twelveSides.getFace() << endl;
+
+    Player p("J");
+    Player p2("V");
+
+    Game game;
+    game.addPlayer(p);
+    game.addPlayer(p2);
+
+    game.print_players();
+    game.addDice(twelveSides);
+    game.addDice((yellowDie));
 
     while (true)
     {
         cout << "Enter 'q' to quit game" << endl;
         string input;
-        cout << "How many players are playing?";
+
         cin >> input;
 
         if (input == "q")
         {
             break;
         }
-        numPlayers = stoi(input);
-        cout << "number of players is set to: " << numPlayers << endl;
+
+        game.gameLoop();
     }
     return 0;
 }
