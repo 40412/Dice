@@ -3,10 +3,10 @@
 #include <iostream>
 using namespace std;
 
-Dice::Dice(const string& color, const int& numFaces)
+Dice::Dice(const string& color)
 {
     this->color = color;
-    this->numFaces = numFaces;
+    this->numFaces = 6;
 }
 
 string Dice::getColor() const
@@ -26,7 +26,6 @@ int Dice::getFace() const
 
 void Dice::roll()
 {
-    srand(time(NULL));
     int randN = rand() % 6 + 1;
     face = randN;
 }

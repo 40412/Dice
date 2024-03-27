@@ -7,8 +7,6 @@
 #include "player.h"
 #include "dice.h"
 
-using namespace std;
-
 class Game
 {
 public:
@@ -20,6 +18,7 @@ public:
     vector<Player> winner() const;
 private:
     vector<Player> players;
+    vector<unique_ptr<Dice>> available_dice;
     vector<Dice> dice;
 };
 

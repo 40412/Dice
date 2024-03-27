@@ -3,7 +3,7 @@
 #include <vector>
 using namespace std;
 
-SpecialDice::SpecialDice(const string& color, const int& numFaces) : Dice(color, numFaces)
+SpecialDice::SpecialDice(const string& color, const int& numFaces) : Dice(color)
 {
     // Constructor implementation goes here
     this->color = color;
@@ -22,7 +22,6 @@ const vector<int>& SpecialDice::getFaces() const
 
 void SpecialDice::roll()
 {
-    srand(time(NULL));
     int randN = rand() % numFaces + 1;
     face = randN;
 }

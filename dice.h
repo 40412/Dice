@@ -7,11 +7,11 @@ using namespace std;
 class Dice
 {
 public:
-    Dice(const string& color, const int& numFaces);
+    Dice(const string& color);
     string getColor() const;
     int getNumFaces() const;
     int getFace() const;
-    void roll();
+    virtual void roll();
 protected:
     string color;
     int numFaces;

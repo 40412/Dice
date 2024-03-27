@@ -1,4 +1,6 @@
 #include "game.h"
+#include "dice.h"
+#include "special_dice.h"
 #include <vector>
 #include <iostream>
 #include <memory>
@@ -7,7 +9,9 @@ using namespace std;
 
 Game::Game()
 {
-
+    available_dice.emplace_back(std::make_unique<Dice>("green"));
+    available_dice.emplace_back(std::make_unique<SpecialDice>("red", 12));
+    available_dice.emplace_back(std::make_unique<SpecialDice>("blue", 24));
 }
 
 void Game::addPlayer(Player player)
@@ -44,12 +48,17 @@ void Game::gameLoop()
                 dice[i].roll();
                 int roll = dice[i].getFace();
                 cout << "rolled: " << roll << endl;
-
-                cout << score << endl;
                 score += roll;
                 players[i].setScore(score);
-                cout << "Score now: " << score << endl;
+                //cout << "Score now: " << score << endl;
             }
+        }
+
+        vector winner = this->winner();
+
+        for (int i = 0; i < winner.size(); i++)
+        {
+            cout << winner[i].getName() << endl;
         }
         cout << "Continue game?" << endl;
         cin >> input;
@@ -67,7 +76,7 @@ vector<Player> Game::winner() const
     int score;
     int max_score = 0;
 
-    for (i = 0; i < players.size(); i++)
+    for (int i = 0; i < players.size(); i++)
     {
         score = players[i].getScore();
 

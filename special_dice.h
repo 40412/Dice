@@ -9,7 +9,7 @@ class SpecialDice : public Dice
 public:
     SpecialDice(const string& color, const int& numFaces);
     const vector<int>& getFaces() const;
-    void roll();
+    void roll() override;
 private:
     vector<int> faces;
 };
