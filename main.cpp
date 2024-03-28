@@ -14,39 +14,22 @@ void seedRand() {
 
 int main()
 {
-    unique_ptr<Dice> greenDie = make_unique<Dice>("green");
-    greenDie->roll();
-    //cout << "Die: " << greenDie->getColor() << " " << greenDie->getNumFaces() << " " << greenDie->getFace() << endl;
-
-    SpecialDice twelveSides("red", 12);
-    Dice yellowDie("yellow");
-
-    Player p("J");
-    Player p2("V");
-
     Game game;
-
-    game.addPlayer(p);
-    game.addPlayer(p2);
-
-    game.print_players();
-    game.addDice(twelveSides);
-    game.addDice((yellowDie));
-
     seedRand();
+    string input;
 
     while (true)
     {
-        cout << "Enter 'q' to quit game" << endl;
-        string input;
+        game.initialize_game();
+        cout << "Enter 'q' to quit game or anything else to set new game" << endl;
         cin >> input;
 
         if (input == "q")
         {
             break;
         }
-
-        game.gameLoop();
     }
+
+
     return 0;
 }
