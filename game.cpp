@@ -4,14 +4,12 @@
 #include <vector>
 #include <iostream>
 #include <memory>
+#include <limits>
 
 //using namespace std;
 
 Game::Game()
 {
-    available_dice.emplace_back(std::make_unique<Dice>("green"));
-    available_dice.emplace_back(std::make_unique<SpecialDice>("red", 12));
-    available_dice.emplace_back(std::make_unique<SpecialDice>("blue", 24));
 }
 
 void Game::initialize_game()
@@ -26,12 +24,19 @@ void Game::initialize_game()
 
     while(true)
     {
-        cout << "Add new player or (c) to continue" << endl << "Player name:";
+        cout << "Add new player or (c) to continue to choose dice" << endl << "Player name:";
         cin >> input;
 
         if (input == "c")
         {
-            break;
+            if (players.size() > 0)
+            {
+                break;
+            }
+            else
+            {
+                cout << "Add at least one player\n";
+            }
         }
         else
         {
@@ -40,32 +45,35 @@ void Game::initialize_game()
         }
     }
 
-    cout << "Choose dice" << endl;
-    cout << "How many green dice? (0-3)" << endl;
+    cout << "Choose dice for the game" << endl;
+    cout << "Green die is a normal die with 6 sides. Choose 0 to 3 green dice:" << endl;
     cin >> num_green;
 
-    if(cin.fail())
+    if(cin.fail() || num_green > 3 || num_green < 0)
     {
         cin.clear();
-        cout << "Invalid number. Using 1 die;\n";
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cout << "Invalid number. Using 1 die\n";
         num_green = 1;
     }
 
-    cout << "How many blue dice? (0-3)" << endl;
+    cout << "Blue die is a special die with 24 sides. Choose 0 to 3 blue dice:" << endl;
     cin >> num_blue;
 
-    if(cin.fail())
+    if(cin.fail() || num_blue > 3 || num_blue < 0)
     {
         cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         cout << "Invalid number. Using 1 die;\n";
         num_blue = 1;
     }
-    cout << "How many red dice? (0-3)" << endl;
+    cout << "Red die is a special die with 12 sides. Choose 0 to 3 red dice:" << endl;
     cin >> num_red;
 
-    if(cin.fail())
+    if(cin.fail() || num_red > 3 || num_red < 0)
     {
         cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         cout << "Invalid number. Using 1 die;\n";
         num_red = 1;
     }
@@ -94,7 +102,6 @@ void Game::initialize_game()
         cout << "Starting game" << endl;
         gameLoop();
     }
-
 }
 
 void Game::addPlayer(Player player)
@@ -120,7 +127,7 @@ void Game::gameLoop()
         {
             players[i].setScore(0);
             string roll_dice;
-            cout << "Player " << players[i].getName() << " rolls" << endl;
+            cout << "Player " << players[i].getName() << " rolls. Roll by typing any input" << endl;
             cin >> roll_dice;
             int score = players[i].getScore();
 
@@ -145,7 +152,7 @@ void Game::gameLoop()
 
         cout << "With score:" << winner[0].getScore() << endl;
 
-        cout << "Enter 'b' to set a new game or quit or any other input to play again" << endl;
+        cout << "Enter 'b' to go back to game settings. To play again type any other input" << endl;
         cin >> input;
 
         if (input == "b")

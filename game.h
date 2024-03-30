@@ -12,14 +12,12 @@ class Game
 public:
     Game();
     void addPlayer(Player player);
-    void addDice(Dice dice);
     void initialize_game();
     void gameLoop();
     void print_players();
     vector<Player> winner() const;
 private:
     vector<Player> players;
-    vector<unique_ptr<Dice>> available_dice;
     vector<unique_ptr<Dice>> dice;
 };
 

@@ -8,10 +8,8 @@ class SpecialDice : public Dice
 {
 public:
     SpecialDice(const string& color, const int& numFaces);
-    const vector<int>& getFaces() const;
     void roll() override;
 private:
-    vector<int> faces;
 };
 
 #endif // SPECIAL_DICE_H
